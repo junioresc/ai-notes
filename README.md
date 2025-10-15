@@ -52,6 +52,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### 5. Access the Dashboard
+
+1. Sign in using the buttons on the landing page
+2. Navigate to `/dashboard` to manage your notes
+3. Create, edit, and delete notes with full CRUD operations
+
 ## Database Commands
 
 - `npm run db:generate` - Generate Prisma Client
@@ -69,11 +75,32 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - **Icons**: Lucide React
 - **TypeScript**: Full type safety
 
+## Features
+
+### ✅ Landing Page
+
+- Hero section with AI-powered messaging
+- Feature showcase (6 key features)
+- FAQ section with accordion
+- Responsive navigation
+- Sign in/Sign up with Clerk
+
+### ✅ Dashboard
+
+- **Full CRUD Operations** - Create, read, update, delete notes
+- **Responsive Grid Layout** - 1/2/3 columns based on screen size
+- **Real-time Updates** - Instant feedback on all operations
+- **Loading States** - Smooth loading indicators
+- **Error Handling** - Graceful error messages
+- **Empty States** - Helpful onboarding
+- **Date Formatting** - "Updated 2 minutes ago" style
+- **Confirmation Dialogs** - Prevent accidental deletions
+
 ## Database Schema
 
 ### User
 
-- `id`: Unique identifier
+- `id`: Clerk user ID (primary key)
 - `email`: Unique email address
 - `name`: Optional user name
 - `notes`: One-to-many relation with notes
@@ -82,6 +109,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - `id`: Unique identifier
 - `title`: Note title
-- `content`: Note content
-- `userId`: Foreign key to User
+- `content`: Note content (text field)
+- `userId`: Foreign key to User (Clerk ID)
 - `createdAt` / `updatedAt`: Timestamps
+
+## API Routes
+
+- `GET /api/notes` - Fetch all user notes
+- `POST /api/notes` - Create a new note
+- `GET /api/notes/[id]` - Fetch a single note
+- `PATCH /api/notes/[id]` - Update a note
+- `DELETE /api/notes/[id]` - Delete a note
+
+All routes are protected with Clerk authentication.
