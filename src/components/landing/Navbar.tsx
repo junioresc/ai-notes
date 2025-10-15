@@ -1,6 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import {
+	SignInButton,
+	SignUpButton,
+	SignedIn,
+	SignedOut,
+	UserButton,
+} from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { Brain } from 'lucide-react'
 
@@ -35,10 +42,19 @@ export function Navbar() {
 				</div>
 
 				<div className='flex items-center gap-3'>
-					<Button variant='ghost' size='sm'>
-						Sign In
-					</Button>
-					<Button size='sm'>Get Started</Button>
+					<SignedOut>
+						<SignInButton mode='modal'>
+							<Button variant='ghost' size='sm'>
+								Sign In
+							</Button>
+						</SignInButton>
+						<SignUpButton mode='modal'>
+							<Button size='sm'>Get Started</Button>
+						</SignUpButton>
+					</SignedOut>
+					<SignedIn>
+						<UserButton />
+					</SignedIn>
 				</div>
 			</div>
 		</nav>

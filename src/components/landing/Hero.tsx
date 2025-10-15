@@ -1,7 +1,9 @@
 'use client'
 
+import { SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Sparkles } from 'lucide-react'
+import Link from 'next/link'
 
 export function Hero() {
 	return (
@@ -27,10 +29,22 @@ export function Hero() {
 					</p>
 
 					<div className='flex flex-col sm:flex-row gap-4'>
-						<Button size='lg' className='gap-2'>
-							Start Taking Notes
-							<ArrowRight className='h-4 w-4' />
-						</Button>
+						<SignedOut>
+							<SignUpButton mode='modal'>
+								<Button size='lg' className='gap-2'>
+									Start Taking Notes
+									<ArrowRight className='h-4 w-4' />
+								</Button>
+							</SignUpButton>
+						</SignedOut>
+						<SignedIn>
+							<Link href='/dashboard'>
+								<Button size='lg' className='gap-2'>
+									Go to Dashboard
+									<ArrowRight className='h-4 w-4' />
+								</Button>
+							</Link>
+						</SignedIn>
 						<Button size='lg' variant='outline'>
 							Watch Demo
 						</Button>
